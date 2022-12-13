@@ -18,6 +18,7 @@ public class HealthController : MonoBehaviour
     private void Start()
     {
         UpdateHealth();
+        Time.timeScale = 1f;
     }
 
     public void UpdateHealth()
@@ -41,13 +42,17 @@ public class HealthController : MonoBehaviour
        
         if (playerHealth <= 0)
         {
-            Death();                                                    
+            Death();
+            Time.timeScale = 0;
+            
         }
         
     }
     public void Death()
     {
         OnPlayerDeath?.Invoke();
+        movement.dead = true;
+        
     }
 
     

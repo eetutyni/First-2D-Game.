@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class timer : MonoBehaviour
 {
 
-    [SerializeField] Text countDown;
+    [SerializeField] public Text countDown;
     float currentTime = 0f;
     [SerializeField] HealthController _healthController;
-    gameover gameover1;
+    
    
     
     float startingTime = 90f;
@@ -20,7 +20,7 @@ public class timer : MonoBehaviour
         
         
     }
-
+    
    
 
     // Update is called once per frame
@@ -37,5 +37,7 @@ public class timer : MonoBehaviour
             
             
         }
+       
     }
+    
 }
