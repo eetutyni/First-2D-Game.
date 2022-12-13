@@ -27,7 +27,7 @@ public class Damage1 : MonoBehaviour
         _healthController.playerHealth = _healthController.playerHealth - playerDamage;
         _healthController.UpdateHealth();
 
-        
+       
 
     }
 

@@ -7,10 +7,10 @@ public class Bullet : MonoBehaviour
    
    
    
-    Damage1 Damage;
+   
     public float speed = 40f;
     public Rigidbody2D rb;
-    HealthController healthController;
+    
 
     void Start()
     {
@@ -18,11 +18,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Damage1 damageh = collision.GetComponent<Damage1>();
-        if (damageh != null)
-        {
-            damageh.Damage();
-        }
+        
         Destroy(gameObject);
         
     }

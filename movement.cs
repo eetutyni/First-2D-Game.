@@ -11,6 +11,8 @@ public class movement : MonoBehaviour
     private PolygonCollider2D coll;
     Rigidbody2D rb;
     public Canvas WinScreen;
+    [SerializeField] Text fTime;
+    timer timer1;
     
 
     public float speed = 5.0f;
@@ -23,13 +25,17 @@ public class movement : MonoBehaviour
 
     [SerializeField] public LayerMask jumpableGround;
 
+    public static bool dead = false;
+
     // Start is called before the first frame update
     void Start()
     {
 
+        
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<PolygonCollider2D>();
         EnablePlayerMovement();
+
     }
     private void OnEnable()
     {
@@ -45,7 +51,10 @@ public class movement : MonoBehaviour
     void Update()
     {
 
-
+        if (dead)
+        {
+            return; 
+        }
 
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
 
@@ -62,19 +71,26 @@ public class movement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        
-        
-
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown("a"))
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown("d"))
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
+
+        if (Input.GetKeyDown("left"))
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+
+        if (Input.GetKeyDown("right"))
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
 
     }
     bool IsGrounded()
@@ -84,9 +100,6 @@ public class movement : MonoBehaviour
 
     }
    
-
-
-
     private void DisablePlayerMovement()
     {
         animator.enabled = false;
@@ -103,6 +116,8 @@ public class movement : MonoBehaviour
         {
             WinScreen.gameObject.SetActive(true);
             Time.timeScale = 0;
+            
+
         }
     }
 
